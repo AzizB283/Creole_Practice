@@ -18,6 +18,8 @@ echo "<br>";
 
 $cars=array("Volvo","BMW","Toyota");
 $arrlength=count($cars);
+echo $arrlength;
+echo "<br>";
 
 for($x=0;$x<$arrlength;$x++)
   {
