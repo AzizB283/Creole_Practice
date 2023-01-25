@@ -1,10 +1,17 @@
 <form name="form" action="" method="post">
-    <label for="">Enter a string : </label>
-  <input type="text" name="input" id="subject">
+    <label for="">Enter element1 : </label>
+  <input type="text" name="input1" id="subject">
+
+  <label for="">Enter element2 : </label>
+  <input type="text" name="input2" id="subject">
+
+  <label for="">Enter element3 : </label>
+  <input type="text" name="input3" id="subject">
 </form>
 
 
 <?php
+
 
 $str_len = strlen($_POST['input']);
 echo "String length function : ".strlen($_POST['input'])."<br>";
