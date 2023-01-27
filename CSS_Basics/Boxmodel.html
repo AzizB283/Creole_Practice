@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Model</title>
+<style> 
+    h1{
+        text-align: center;
+        }
+        .container{
+            border: 2px solid black;
+            /*Inside space to border */
+            /* padding: 50px;*/ 
+            
+            /*Outside space to boorder*/
+            margin: 50px; 
+            
+            /* padding-top: 40px;*/ /*From top only*/
+            /*padding-bottom: 20px;*/ /*From bottom only*/
+            /*padding-left: 10px;*/ /*From left only*/
+            /*padding-right: 50px;*/ /*From right only */
+            
+            /* padding: top right bottom left */
+            /* padding: 40px 20px 10px 50px; */
+            
+            /* padding: top/bottom  left/right */
+            padding: 40px 20px;
+            
+            /* Same way we can do all properties in margin */
+            
+            
+            box-sizing: border-box; 
+            /* if increase padding then also its width don't change */
+        }
+
+
+        </style>
+</head>
+<body>
+    
+    <h1>This is Box Model</h1>
+        <div class="container">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, adipisci sed. Quae dignissimos voluptates culpa ducimus aperiam exercitationem placeat possimus nam vitae aut, facilis corporis ipsum, accusantium esse beatae ab dicta et quas reprehenderit.</p>
+        </div>
+    
+</body>
+</html>
