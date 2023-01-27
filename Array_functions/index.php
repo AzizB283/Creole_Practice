@@ -5,10 +5,6 @@
 
   <select name="select" id="">
     <option value="" disabled selected>Option</option>
-    <!-- <option value="push">Push</option>
-    <option value="pop">Pop</option>
-    <option value="shift">Shift</option>
-    <option value="unshift">Unshift</option> -->
     <option value="product">Product</option>
     <option value="random">Random</option>
     <option value="reverse">Reverse</option>
@@ -20,6 +16,10 @@
     <option value="dsc">Descending Array</option>
     <option value="shuffle">Shuffle</option>
     <option value="sizeof">Number of elements</option>
+    <option value="push">Pushed new element</option>
+    <option value="pop">Pop last element</option>
+    <option value="shift">Shift first element</option>
+    <option value="unshift">Unshift first element</option>
   </select>
   <br><br>
   <input type="submit" value="submit">

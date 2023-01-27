@@ -1,3 +1,4 @@
+<pre>
 <?php
 
 // echo $_POST['input'];
@@ -19,7 +20,8 @@ if(!isset($_POST['submit'])){
 
             case 'random':
                 echo "Random elements of array keys : ";
-                print_r(array_rand($arr));
+                $key=array_rand($arr);
+                echo $arr[$key];
                  break;
             
             case 'reverse':
@@ -53,10 +55,10 @@ if(!isset($_POST['submit'])){
             case 'asc':
                   asort($arr);
                   echo "Ascending order : "."<br>";
-                  foreach($arr as $x=>$x_value)
+                  foreach($arr as $key=>$val)
                         {
-                        echo "". $x_value;
-                        echo "<br>";
+                              echo "[$key] = $val";
+                              echo "<br>";
                         }
                                         
                   break;
@@ -65,9 +67,9 @@ if(!isset($_POST['submit'])){
             case 'dsc':
                  arsort($arr);
                   echo "Descending order : "."<br>";
-                  foreach($arr as $x=>$x_value)
+                  foreach($arr as $key=>$val)
                         {
-                        echo "". $x_value;
+                        echo "[$key] = $val";
                         echo "<br>";
                         }
                   break;
@@ -75,7 +77,7 @@ if(!isset($_POST['submit'])){
 
             case 'shuffle':
                   echo "Suffled elements : "."<br>";
-                  shuffle($arr);
+                  print_r(shuffle($arr));
                   foreach($arr as $x=>$x_value)
                         {
                         echo "". $x_value;
@@ -90,6 +92,30 @@ if(!isset($_POST['submit'])){
                   break;
                         
 
+            case 'push':
+                 echo "Pushed new element : ";
+                 $pushed=array_push($arr,5);
+                 print_r($arr);
+                  break;
+
+            case 'pop':
+                  echo "Poped last element : ";
+                  $poped=array_pop($arr);
+                  print_r($arr);
+                  break;
+
+            case 'shift':
+                  echo "Shift first element : ";
+                  $shifted=array_shift($arr);
+                  print_r($arr);
+                  break;
+
+            case 'unshift':
+                  echo "Unshift first element : ";
+                  $unshifted=array_unshift($arr,5);
+                  print_r($arr);
+                  break;
+
             default:
                 echo "Enter valid input";
                 break;
@@ -103,3 +129,4 @@ if(!isset($_POST['submit'])){
 // }
 
 ?>
+</pre>
