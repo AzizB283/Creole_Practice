@@ -1,8 +1,6 @@
 <pre>
 <?php
 
-// echo $_POST['input'];
-
 $arr = explode(",",$_POST['input']);
 
 
