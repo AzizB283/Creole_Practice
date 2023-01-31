@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z-Index</title>
+    <style>
+        img{
+            position: absolute;
+            z-index: -1;
+        }
+        p{
+            color: red;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <img id="hide" src="https://source.unsplash.com/user/erondu/1600x900" alt="Unsplash image" height="300px" width="300px">
+
+    <div><p>This is text and Z index is 1</p></div>
+    <p>This is image and z-index of <br>image is -1</p>
+    
+</body>
+</html>
