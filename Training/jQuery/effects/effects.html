@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Effects in jQuery</title>
+    <script src="../jquery.min.js"></script>
+    <script src="effects.js"></script>
+    <style>
+        #animatediv{
+            height: 100px;
+            width: 100px;
+            background-color: red;
+            position: relative;
+        }
+
+
+        #stopeffect{
+            background:orangered;
+            height:100px;
+            width:200px;
+            position:relative;
+        }
+
+        h4{
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <center><h1>Effects in jQuery</h1></center>
+
+    <center> <h3><b>Hide and Show Effect</b></h3></center>
+
+    <p id="hideshow">This is hide and show effect in jQuery</p>
+
+    <button id="hide">Click here to hide</button>
+    <button id="show">Click here to show</button>
+    <button id="toggle">Click here to toggle</button><br><br><br>
+
+
+
+
+    <center> <h3><b>Fade Effect</b></h3></center>
+    <p id="fadepara">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, officiis.</p>
+    <button id="fadeout">Click here to Fadeout</button>
+    <button id="fadein">Click here to Fadein</button>
+    <button id="fadetoggle">Click here to Fade Toggle</button>
+    <button id="fadeto">Click here to Fade To</button><br><br><br><br>
+
+
+    <center> <h3><b>Sliding Effect</b></h3></center>
+
+    <p id="slidepara">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, eos?</p>
+    <button id="slideup">Click here to slide up</button>
+    <button id="slidedown">Click here to slide down</button>
+    <button id="slidetoggle">Click here to slide toggle</button><br><br><br>
+
+
+    <center> <h3><b>Animate Effect</b></h3></center>
+    <div id="animatediv"></div><br>
+    <button id="animate">Start Animation</button>  <br><br><br>
+
+
+
+    <center> <h3><b>Stop Effect</b></h3></center>
+
+    <!-- <button id="start">Start Sliding</button>
+    <button id="stop">Stop Sliding</button>
+    <div id="stopeffect">
+        <center>
+            <h4>Slide Down</h4>
+        </center>
+    </div> -->
+
+
+
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <button id="stop2">Stop all</button>
+    <button id="stop3">Stop but finish</button><br><br>
+
+
+    <div id="stopeffect">This is stop effect</div><br><br><br>
+
+
+
+
+    <center> <h3><b>Callback</b></h3></center>
+
+    <p id="callbackpara">When you do things after the event that is called callback.</p>
+
+    <button id="callback">Click here to hide para</button><br><br><br>
+
+
+
+    <center> <h3><b>Chaining</b></h3></center>
+
+
+    <p id="chainingpara">Lorem ipsum dolor sit, amet consectetur adipisicing elit. A, beatae!</p>
+
+    <button id="chaining">Click here</button>
+    
+    
+
+    
+</body>
+</html>
