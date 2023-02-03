@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siblings</title>
+    <script src="../jquery.min.js"></script>
+    <script src="siblings.js"></script>
+    <style>
+        .parent *{
+            display: block;
+            border: 2px solid lightgray;
+            padding: 15px;
+            margin: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <center><h1>Siblings Method</h1>
+    <h3>Siblings</h3></center>
+
+    <div class="parent">Parent div
+        <p id="para">Paragraph Tag</p>
+        <span>Span Tag</span>
+        <h3>H3 tag</h3>
+        <a href="#">Anchor Tag</a>
+        <h3>H3 tag</h3>
+    </div>
+
+    <button id="allsib">Find all siblings of p tag</button>
+    <button id="psib">Find all h3 that are siblings of p</button><br><br><br>
+
+
+    <center><h3>Next Method</h3></center><br><br>
+
+    <div class="parent">Parent div
+        <p id="para1">Paragraph Tag</p>
+        <span>Span Tag</span>
+        <h3>H3 tag</h3>
+        <a href="#">Anchor Tag</a>
+        <h3>H3 tag</h3>
+    </div>
+
+    <button id="pnext">Find next of p tag</button>
+    <button id="divnext">Find next of div tag</button><br><br>
+
+
+
+    <center><h3>Next All Method</h3></center><br><br>
+    <div class="parent">Parent div
+        <p id="para2">Paragraph Tag</p>
+        <span>Span Tag</span>
+        <h3>H3 tag</h3>
+        <a href="#">Anchor Tag</a>
+        <h3>H3 tag</h3>
+    </div>
+
+    <button id="nextall">Find next all of P</button><br><br>
+
+
+    <center><h3>Next Until Method</h3></center>
+    <div class="parent">Parent div
+        <p id="para3">Paragraph Tag</p>
+        <span>Span Tag</span>
+        <h3>H3 tag</h3>
+        <a href="#">Anchor Tag</a>
+        <h3>H3 tag</h3>
+    </div>
+
+
+    <button id="nextuntil">Next until a</button><br><br><br>
+
+
+    <center><h3>The prev(), prevAll() and prevUntil() methods work just like the methods above but with reverse functionality</h3></center>
+
+
+    
+</body>
+</html>

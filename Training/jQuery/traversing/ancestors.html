@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traversing</title>
+    <script src="../jquery.min.js"></script>
+    <script src="ancestors.js"></script>
+    <style>.ancestors * { 
+        display: block;
+        border: 2px solid lightgray;
+        color: black;
+        padding: 5px;
+        margin: 15px;
+      }</style>
+</head>
+<body>
+
+    <center><h1>Traversing Ancestors</h1>
+    <h3>Parent</h3>
+    </center>
+
+
+    <div class="ancestors">
+        <div style="width:500px;">div (great-grandparent)
+          <ul>ul (grandparent)  
+            <li>li (direct parent)
+              <span id="fspan">span</span>
+            </li>
+          </ul>   
+        </div>
+      
+        <div style="width:500px;">div (grandparent)   
+          <p>p (direct parent)
+            <span id="sspan">span</span>
+          </p> 
+        </div>
+      </div>
+
+
+      <button id="fspanbtn">Find Parent of First span</button>
+      <button id="sspanbtn">Find Parent of Second span</button><br><br><br>
+
+
+
+      <center><h3>Parents</h3></center><br><br>
+      <div class="ancestors">
+        <div style="width:500px;">div (great-grandparent)
+          <ul>ul (grandparent)  
+            <li>li (direct parent)
+              <span id="aspan">span</span>
+            </li>
+          </ul>   
+        </div>
+        </div>
+
+        <button id="findall">Find all parents of span</button>
+        <button id="finddiv">Find div parent of span</button><br><br><br>
+
+
+        <center><h3>ParentsUntil</h3></center><br><br>
+
+        <div class="ancestors">
+            <div id="pu" style="width:500px;">div (great-grandparent)
+              <ul>ul (grandparent)  
+                <li>li (direct parent)
+                  <span id="puspan">span</span>
+                </li>
+              </ul>   
+            </div>
+            </div>
+
+            <button id="pubtn">Find parents between span and div</button>
+      
+      
+</body>
+</html>

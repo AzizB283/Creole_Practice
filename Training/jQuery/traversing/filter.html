@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtering</title>
+    <script src="../jquery.min.js"></script>
+    <script src="filter.js"></script>
+    <style>
+        .parent * {
+            display: block;
+            border: 2px solid lightgray;
+            padding: 15px;
+            margin: 15px;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <center>
+        <h1>Filtering</h1>
+        <h3>First() / Last()</h3>
+    </center>
+
+    <div class="parent">Parent div
+        <p id="para">Paragraph Tag</p>
+        <span>Span Tag</span>
+        <h3>H3 tag</h3>
+        <p id="para1">Paragraph Tag</p>
+        <a href="#">Anchor Tag</a>
+        <h3>H3 tag</h3>
+    </div>
+
+    <button id="firstpara">Find first para</button>
+    <button id="firsth3">Find first H3</button>
+    <button id="lasth3">Find last H3</button><br><br><br>
+
+
+
+    <center>
+        <h3>Eq method</h3>
+    </center> <br><br>
+
+    <!-- <div class="parent">Parent div
+        <p>Paragraph Tag</p>
+        <span>Span Tag</span>
+        <h3>H3 tag</h3>
+        <p>Paragraph Tag</p>
+        <a href="#">Anchor Tag</a>
+        <h3>H3 tag</h3>
+    </div> -->
+
+    <button id="secpara">Select 2nd para</button>
+    <button id="frh3">Select 3rd h3</button><br><br>
+
+
+    <center><h3>Filter Method</h3></center>
+
+    <p>The filter method lets you choose specific element from given criteria</p>
+    <div class="parent"> 
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, repudiandae!</p>
+        <p class="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, repudiandae!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, repudiandae!</p>
+        <p class="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, repudiandae!</p>
+        
+    </div>
+    <button id="filter">Filter out para that has "para" class</button><br><br>
+
+
+
+    <center><h3>Not Method</h3></center><br><br>
+
+    <p>The not method all elements that did not match criteria</p>
+
+    <div class="parent">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, repudiandae!</p>
+        <p class="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, repudiandae!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, repudiandae!</p>
+        <p class="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, repudiandae!</p>
+    </div>
+
+    <button id="not">Filter out p that does not have class intro</button>
+
+</body>
+
+</html>

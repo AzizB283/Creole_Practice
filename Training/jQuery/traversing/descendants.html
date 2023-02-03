@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descendants</title>
+    <script src="../jquery.min.js"></script>
+    <script src="descendants.js"></script>
+    <style>
+        .descendants *{
+            display: block;
+        border: 2px solid lightgray;
+        color: black;
+        padding: 5px;
+        margin: 15px;
+        }
+    </style>
+</head>
+<body>
+    <center><h1>Descendants in jQuery</h1>
+    <h3>Children</h3>
+    </center>
+
+    <div class="descendants">
+        <div style="width:500px;" class="div">div (current-element)
+          <ul>ul (child)  
+            <li>li (grand-child)
+              <span id="fspan">span (great-grandchild)</span>
+            </li>
+          </ul>   
+        </div>
+      
+        <div style="width:500px;" class="div">div (current-element)   
+          <p class="first">p (child)
+            <span id="sspan">span (grand-child)</span>
+          </p> 
+        </div>
+      </div>
+
+      <button id="fcbtn">Find child of div</button><br><br>
+      <p>This will return all para that are first child of div</p>
+      <button id="scbtn">Find all first para of div</button><br><br><br>
+
+
+
+      <center><h3>Find method</h3></center>
+
+      <div class="descendants">
+        <div style="width:500px;" class="div">div (current-element)
+          <ul>ul (child)  
+            <li>li (grand-child)
+              <span class="span">span (great-grandchild)</span>
+            </li>
+          </ul>   
+        </div>
+      
+        <div style="width:500px;" class="div">div (current-element)   
+          <p class="first">p (child)
+            <span class="span">span (grand-child)</span>
+          </p> 
+        </div>
+      </div>
+      <p>This will return all Span that are descendants of div</p>
+      <button id="allspan">Click here</button>
+      <button id="alldes">All descendants of div</button>
+
+
+
+    
+</body>
+</html>
