@@ -23,6 +23,7 @@ echo "<table border=1 cellpadding = 25px>
         <th>Age</th>
         <th>Gender</th>
         <th>Address</th>
+        <th>Action</th>
         </tr>
         </thead>
         ";
@@ -40,6 +41,7 @@ if (mysqli_num_rows($res) > 0) {
         <td>" . $row['age'] . "</td>
         <td>" . $row['gender'] . "</td>
         <td>" . $row['address'] . "</td>
+        <td> <a href = 'delete1.php?id=$row[id]'>Delete</a></td>
         </tr>
         </tbody>
         ";
@@ -48,3 +50,4 @@ if (mysqli_num_rows($res) > 0) {
 } else {
     echo "Error : " . mysqli_error($conn);
 }
+

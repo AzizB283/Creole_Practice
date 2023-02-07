@@ -16,7 +16,7 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 // else{
 //     echo "Connection Successfull.";
 // }
-
+$id = $_POST['id'];
 $name = $_POST['name'];
 $email = $_POST['email'];
 $age = $_POST['age'];

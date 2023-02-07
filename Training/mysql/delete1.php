@@ -1,9 +1,11 @@
+
+
 <?php
 
 require "index.php";
 echo "<center><h2>DELETE</h2></center>";
-
-$sql = "DELETE FROM user_details WHERE id = 58";
+$id = $_GET['id'];
+$sql = "DELETE FROM pr_form WHERE id = $id ";
 $res = mysqli_query($conn, $sql);
 
 
