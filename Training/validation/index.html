@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validate</title>
+    <link rel="stylesheet" href="screen.css">
+    <script src="jquery.min.js"></script>
+    <script src="jquery.validate.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+    <style>
+        #commentForm {
+            margin: auto;
+            width: 700px;
+        }
+
+        #numerr {
+            color: red;
+            font-size: 18px;
+            margin: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h1>User Details</h1>
+    </center>
+    <form class="cmxform" id="commentForm" method="get" action="" novalidate="novalidate">
+        <div id="numerr"></div>
+
+        <p>
+            <label for="cname">Name (required, at least 3 characters)</label>
+            <input id="cname" name="name" type="text" class="error" required>
+        </p>
+        <p>
+            <label for="cemail">E-Mail (required)</label>
+            <input id="cemail" type="email" name="email" class="error" required>
+        </p>
+
+        <p>
+            <label for="cnumber">Phone Number (required)</label>
+            <input id="cnumber" type="number" name="number" class="error" required minlength="10" maxlength="10">
+
+        </p>
+
+        <p>
+            <label for="curl">URL (optional)</label>
+            <input id="curl" type="url" name="url" class="error">
+        </p>
+        <p>
+            <label for="ccomment">Your comment (required)</label>
+            <textarea id="ccomment" name="comment" class="error" required></textarea>
+        </p>
+
+        <p>
+            <label for="cpassword">Password (required)</label>
+            <input id="cpassword" name="password" type="password" class="error">
+
+        </p>
+
+        <p>
+            <label for="cagree">Please agree to our privacy policy (required)</label>
+            <input id="cagree" name="agree" type="checkbox" class="error" required>
+        </p>
+
+
+        <p>
+            <input class="submit" type="submit" value="Submit">
+        </p>
+
+
+
+    </form>
+    <script>
+        // code to show number of missing fields in form
+        $("#commentForm").validate({
+            invalidHandler: function (event, validator) {
+                var errors = validator.numberOfInvalids();
+                if (errors) {
+                    var message = errors == 1
+                        ? 'You missed 1 field.'
+                        : 'You missed ' + errors + ' fields.';
+                    $("div#numerr").html(message);
+                    $("div#numerr").show();
+                } else {
+                    $("div#numerr").hide();
+                }
+            },
+
+            // add ignore class in which you want to disable validation
+            ignore: ".ignore",
+
+
+            // rules are used to add specific messages or rules
+            rules: {
+                name: {
+                    required: true,
+                    minlength: 3
+                },
+                email: "required",
+                number: "required",
+                comment: "required",
+                password: "required",
+                agree: "required"
+
+
+            },
+            messages: {
+                name: {
+                    required: "Please enter name that is atleast 3 character long",
+
+                },
+
+                email: {
+                    required: "Please enter valid email address",
+                },
+
+                number: {
+                    required: "Enter your number",
+                    number: "Please, enter 10 digit only",
+                    minlength: jQuery.validator.format("Please, Enter 10 digits only")
+                },
+
+                comment: {
+                    required: "Please enter some comment",
+                },
+
+                password: {
+                    required: "Please create password",
+                },
+
+                agree: {
+                    required: "Please agree to our policy to move forward",
+                },
+            },
+
+
+            // onsubmit : false will disable onsubmit validation, allowing the user to submit whatever he wants
+            // onsubmit : false,
+
+
+            // focusInvalid - Focus the last active or first invalid element on submit via validator
+            // focusInvalid : false,
+
+
+            //focusCleanup - Enables cleanup when focusing elements, removing the error class and hiding error messages when an element is focused.
+            focusCleanup: true,
+
+
+            // errorClass - Use this class to create error labels, to look for existing error labels and to add it to invalid elements
+            // errorClass : "invalid",
+
+
+            // validClass  - This class is added to an element after it was validated and considered valid.
+            // validClass : "success",
+
+
+            // errorElement - how to show error msg - The default, "label"
+            // errorElement : "em",
+
+
+            // wrapper - Wrap error labels with the specified element
+            // wrapper : "li",
+
+
+            // errorLabelContainer - All error labels are displayed inside an unordered list with the ID #numerr
+            // errorLabelContainer: "#numerr",
+            // submitHandler: function () {
+            //     alert("Submitted")
+            // },
+
+
+            // showError - A custom message display handler.
+            showErrors: function (errorMap, errorList) {
+                $("#numerr").html("Your form contains "
+                    + this.numberOfInvalids()
+                    + " errors, see details below.");
+                this.defaultShowErrors();
+            }
+
+
+
+
+
+
+
+
+
+
+        });
+
+
+
+
+
+
+    </script>
+
+    <script>
+        $("#commentForm").validate();
+
+
+
+    </script>
+    <script src="number.js"></script>
+
+
+
+
+    <script>
+
+        const phoneInputField = document.querySelector("#cnumber");
+        const phoneInput = window.intlTelInput(phoneInputField, {
+            utilsScript:
+                "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+        });
+    </script>
+</body>
+
+</html>
