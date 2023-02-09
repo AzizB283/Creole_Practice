@@ -23,49 +23,148 @@
             margin: 20px;
             font-weight: bold;
         }
+
+        .phperr {
+            color : red;
+        }
     </style>
 </head>
 
 <body>
+
+<?php
+$name = $email = $number = $url = $comment = $password = $agree = "";
+$nameErr = $emailErr = $numberErr = $urlErr = $commentErr = $passwordErr = $agreeErr = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if(empty($_POST['name'])){
+        $nameErr = "Please enter your name<br>";
+    }
+    else{
+       
+        if(!preg_match("/^[a-zA-Z ]+$/",$name = $_POST['name'])){
+            $nameErr = "Only characters are allowed in name<br>"; 
+            $name = "";     
+        }
+        else{
+            $name = test_input($_POST['name']);
+        }
+    }
+
+    if(empty($_POST['email'])){
+        $emailErr = "Please enter valid email<br>";
+    }
+    else{
+        
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $emailErr = "Invalid email format<br>";
+            $email = "";
+          }
+          else{
+            $email = test_input($_POST['email']);
+          }
+    }
+
+    if(empty($_POST['number'])){
+        $numberErr = "Please enter 10 digit number<br>";
+    }
+    else{
+        
+        if(!preg_match("/^[0-9]*$/",$number = $_POST['number'])){
+            $numberErr = "Only digits are allowed<br>";
+            $number = "";
+        }
+        else{
+            $number = test_input($_POST['number']);
+        }
+    }
+
+    // if(empty($_POST['url'])){
+    //     $urlErr = "Please enter valid url<br>";
+    //     echo $urlErr;
+    // }
+    // else{
+    //     $url = test_input($_POST['url']);
+    //     if(!preg_match("/^[a-z:\/\/]*$/",$url)){
+    //         $urlErr = "Enter valid url<br>";
+    //         echo $urlErr;
+    //     }
+    // }
+
+    if(empty($_POST['comment'])){
+        $commentErr = "Please enter some comment<br>";
+    }
+    else{
+        $comment = test_input($_POST['comment']);
+    }
+
+    if(empty($_POST['password'])){
+        $passwordErr = "Please enter password<br>";
+    }
+    else{
+        $password = test_input($_POST['password']);
+    }
+
+}
+
+function test_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+?>
+    
+
+
     <center>
         <h1>User Details</h1>
     </center>
-    <form class="cmxform" id="commentForm" method="get" action="" novalidate="novalidate">
+    <form class="cmxform" id="commentForm" method="post" action="<?php $_SERVER['PHP_SELF'];?>">
         <div id="numerr"></div>
 
         <p>
             <label for="cname">Name (required, at least 3 characters)</label>
             <input id="cname" name="name" type="text" class="error" required>
+            <label class="phperr"><?php echo $nameErr;?></label>
+            
         </p>
         <p>
             <label for="cemail">E-Mail (required)</label>
-            <input id="cemail" type="email" name="email" class="error" required>
+            <input id="cemail" type="email" name="email" class="error" value=" " required>
+            <label class="phperr"><?php echo $emailErr;?></label>
         </p>
 
         <p>
             <label for="cnumber">Phone Number (required)</label>
             <input id="cnumber" type="number" name="number" class="error" required minlength="10" maxlength="10">
+            <label class="phperr"><?php echo $numberErr;?></label>
 
         </p>
 
         <p>
-            <label for="curl">URL (optional)</label>
+            <label for="curl">URL (Optional)</label>
             <input id="curl" type="url" name="url" class="error">
         </p>
         <p>
             <label for="ccomment">Your comment (required)</label>
             <textarea id="ccomment" name="comment" class="error" required></textarea>
+            <label class="phperr"><?php echo $commentErr;?></label>
         </p>
 
         <p>
             <label for="cpassword">Password (required)</label>
-            <input id="cpassword" name="password" type="password" class="error">
+            <input id="cpassword" name="password" type="password" class="error" minlength="6" maxlength="10">
+            <label class="phperr"><?php echo $passwordErr;?></label>
 
         </p>
 
         <p>
             <label for="cagree">Please agree to our privacy policy (required)</label>
             <input id="cagree" name="agree" type="checkbox" class="error" required>
+            
         </p>
 
 
@@ -76,6 +175,9 @@
 
 
     </form>
+
+
+   
     <script>
         // code to show number of missing fields in form
         $("#commentForm").validate({
@@ -132,6 +234,8 @@
 
                 password: {
                     required: "Please create password",
+                    minlength: jQuery.validator.format("Password must be 6 characters long")
+                    
                 },
 
                 agree: {
@@ -149,7 +253,7 @@
 
 
             //focusCleanup - Enables cleanup when focusing elements, removing the error class and hiding error messages when an element is focused.
-            focusCleanup: true,
+            // focusCleanup: true,
 
 
             // errorClass - Use this class to create error labels, to look for existing error labels and to add it to invalid elements
@@ -176,41 +280,18 @@
 
 
             // showError - A custom message display handler.
-            showErrors: function (errorMap, errorList) {
-                $("#numerr").html("Your form contains "
-                    + this.numberOfInvalids()
-                    + " errors, see details below.");
-                this.defaultShowErrors();
-            }
-
-
-
-
-
-
-
-
-
+            // showErrors: function (errorMap, errorList) {
+            //     $("#numerr").html("Your form contains "
+            //         + this.numberOfInvalids()
+            //         + " errors, see details below.");
+            //     this.defaultShowErrors();
+            // }
 
         });
 
-
-
-
-
-
     </script>
 
-    <script>
-        $("#commentForm").validate();
-
-
-
-    </script>
     <script src="number.js"></script>
-
-
-
 
     <script>
 
@@ -220,6 +301,75 @@
                 "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
         });
     </script>
+
+
+
+
 </body>
 
 </html>
+
+<?php
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+    
+    echo "<h2>Your Input:</h2>";
+    
+    if(empty($_POST['submit'])){
+        
+        echo "<table border=1 cellpadding = 5>
+        
+        <tbody>
+        
+        <tr>
+        <th>Name</th>
+        <td>".$name. "</td>
+        </tr> 
+        
+        <tr>
+        <th>Email</th>
+        <td>".$email. "</td>
+        </tr>
+        
+        <tr>
+        <th>Number</th>
+        <td>".$number. "</td>
+        </tr>
+        
+        <tr>
+        <th>URL</th>
+        <td>".$url. "</td>
+        </tr>
+        
+        <tr>
+        <th>Comment</th>
+        <td>".$comment. "</td>
+        </tr>
+        
+        <tr>
+        <th>Password</th>
+        <td>".$password. "</td>
+        </tr>
+        
+        </tbody>
+        </table>";
+        
+    }
+}
+    
+    
+
+// echo $email;
+// echo "<br>";
+// echo $number;
+
+
+
+
+?>
+
+
+
+
+
