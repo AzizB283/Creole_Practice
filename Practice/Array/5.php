@@ -1,41 +1,33 @@
 <?php
+$temperatures = [78, 60, 62, 68, 71, 68, 73, 85, 66, 64, 76, 63, 75, 76, 73, 68, 62, 73, 72, 65, 74, 62, 62, 65, 64, 68, 73, 75, 79, 73];
 
-$temp = array(78, 60, 62, 68, 71, 68, 73, 85, 66, 64, 76, 63, 75, 76,
-73, 68, 62, 73, 72, 65, 74, 62, 62, 65, 64, 68, 73, 75, 79, 73);
 
-$count = count($temp);
-// echo $count;
-$sum = 0;
-
-foreach($temp as $ele){
-    $sum+=$ele;
-}
-
-$avg = $sum/$count;
-echo "The average is : ",$avg;
+$sum = array_sum($temperatures);
+$average = $sum / count($temperatures);
 
 echo "<br>";
 
 
-sort($temp);
+sort($temperatures);
+array_unique($temperatures);
+$unique=array_unique($temperatures);
+print_r($unique);
 
-// foreach($temp as $high){
+// get five lowest and highest temperatures
+$five_lowest = array_slice($unique, 0, 5);
+$five_highest = array_slice($unique, -5);
 
-//         echo $high;
-//         echo "<br>";
-// }
-// echo "<br>";
+// display results
+echo "Average temperature: $average" . PHP_EOL;
+echo "<br>";
+echo "Five lowest temperatures: " . implode(", ", $five_lowest);
+echo "<br>";
+echo "Five highest temperatures: " . implode(", ", $five_highest);
 
-// print_r($temp);
-// echo "<br>";
-
-
-
-for($index=$temp[0];$index<$temp[5];$index++){
-    echo $index;
-    echo "<br>";
-}
 
 
 
 ?>
+
+
+

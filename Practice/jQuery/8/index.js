@@ -2,6 +2,6 @@ $(document).ready(function(){
 
     $("#btn").click(function(){
 
-        $("[href").hide()
+        $("a").removeAttr("href")
     })
 })

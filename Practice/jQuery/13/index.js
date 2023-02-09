@@ -1,10 +1,14 @@
 $(document).ready(function(){
 
-    var value = $("input['radio:checked']").val();
-    console.log(value)
+    // var value = value.html($("input:checked").val());
+    // // console.log(value)
 
-    $("span").append().text(value)
+    // $("span").text(value);
 
+    $("#btn").click(function(){
+        var value = $('input:checked').val()
 
+        $("#span").text(value);
+    })
 })
 console.log("hello")

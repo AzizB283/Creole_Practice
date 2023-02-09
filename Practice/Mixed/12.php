@@ -18,32 +18,15 @@
 
 
 <?php
-
-$sum=0;
-// $num = $_POST['num'];
-
-//      while($num>0){
-//         $num1 = ($num) * ($num-1);
-//         $num--;
-//         $sum += $num1;
-//      }
-// echo $sum;
-
-// for($i=$num;$i>0;$i--){
-//     $num1 = $num * ($num-1);
-//     // $num--;
-//     $sum+=$num1;
-//}
+$fact=1;
+$num = $_POST['num'];
 
 
-function fib($num){
-    return $num * fib($num-1);
-
+for($i=$num;$i>0;$i--){
+    $fact = $fact*$i;
 }
-// echo $sum;
 
-echo fib(5);
-
+echo "The factorial of $num is : ",$fact;
 
 
 

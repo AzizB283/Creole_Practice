@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
     $("#btn").click(function(){
-        $("#myTable tr:not(:first-child)").hide()
+        $("#myTable tr:not(:first-child)").remove()
     })
 })
