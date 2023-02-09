@@ -1,0 +1,24 @@
+{
+    "countries_capitals":[
+    {
+      "country":"India",
+      "capital":"New Delhi"
+    },
+    {
+      "country":"Italy",
+      "capital":"Rome"
+    },
+    {
+      "country":"Germany",
+      "capital":"Berlin"
+    },
+    {
+      "country": "Egypt",
+      "capital":"Cairo"
+    },
+    {
+      "country": "Australia",
+      "capital":"Canberra"
+    }
+  ]
+  }
