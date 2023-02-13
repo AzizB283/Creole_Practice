@@ -1,12 +1,13 @@
 <?php
 
-$id = intval($_GET['id']);
 
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "creole_practice";
 
+$id = $_POST['id'];
+// print_r($_POST);
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
 $sql = "SELECT * FROM employee WHERE id=".$id;
@@ -45,7 +46,6 @@ echo "</table>";
 } else {
 echo "Error : " . mysqli_error($conn);
 }
-
 
 
 ?>
