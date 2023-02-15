@@ -1,30 +1,32 @@
 <?php
 
-function repeat($str){
-    $length = strlen($str);
-    $arr = [];
+function check($str) {
+  $count = array();
+  $maxCount = 0;
+  $maxChar = '';
 
-    for($index = 0; $index < $length; $index++){
 
-        
-        if(in_array($str[$index], $arr)){
-            print_r($str[$index]);
-            // echo asort($str[$index]);
-        }
-        else{
-            
-            $push = array_push($arr, $str[$index]);
-            // echo $str[$index];
-        }
+  for ($index = 0; $index < strlen($str); $index++) {
+    $char = $str[$index];
+    if (isset($count[$char])) {
+      $count[$char]++;
+    } else {
+      $count[$char] = 1;
     }
 
+    if ($count[$char] > $maxCount || ($count[$char] == $maxCount && $char < $maxChar)) {
+      $maxCount = $count[$char];
+      $maxChar = $char;
+    }
+  }
+
+  return $maxChar;
 }
 
-repeat("abcddef");
 
+echo check("abcddefg"); 
 echo "<br>";
+echo check("heggbdeff"); 
 
-repeat("heggbdeff");
+
 ?>
-
-

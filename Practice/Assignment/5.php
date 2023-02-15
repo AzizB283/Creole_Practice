@@ -1,24 +1,33 @@
 <?php
-// function check($str, $num){
-//     $index = strpos($str,$num);
+function check($str, $num){
+    $index = $str[$num-1];
 
-//     echo $index;
-// }
+    // echo $index;
 
-// check("hello", "e");
+    if($index == "a" || $index == "e" || $index == "i" || $index== "o" || $index == "u" || $index == "A" || $index == "E" || $index == "I" || $index== "O" || $index == "U" ){
+       echo "Vowel";
+    }
+    else{
+        echo "Constant";
+    }
+
+}
+
+check("hello", 4);
+check("Cat", 2);
 
 ?>
 
 
-<html>
+<!-- <html>
     <head>
         <script>
             function check(str, num) {
-                let char = str.charAt(num-1);
+                let $index = str.$indexAt(num-1);
 
-                console.log(char);
+                console.log($index);
 
-                if(char == "a" || char == "e" || char == "i" || char== "o" || char == "u" || char == "A" || char == "E" || char == "I" || char== "O" || char == "U" ){
+                if($index == "a" || $index == "e" || $index == "i" || $index== "o" || $index == "u" || $index == "A" || $index == "E" || $index == "I" || $index== "O" || $index == "U" ){
                     document.write("Vowel");
                     console.log("Vowel");
                 }
@@ -39,4 +48,4 @@
 
 </body>
 
-</html>
+</html> -->

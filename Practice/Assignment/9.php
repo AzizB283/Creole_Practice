@@ -2,9 +2,17 @@
 
 function checkstr($str, $substr){
     
-    if(substr_compare($str,$substr,0)){
-        echo "true";
+    // if(strstr($str, $substr)){
+    //     echo "true";
         
+    // }
+    // else{
+    //     echo "false";
+    // }
+
+
+    if(preg_match("/{$substr}/",$str)){
+        echo "true";
     }
     else{
         echo "false";
@@ -12,4 +20,6 @@ function checkstr($str, $substr){
 }
 
 checkstr("catapult", "cat");
+echo "<br>";
+checkstr("hello","leo");
 ?>

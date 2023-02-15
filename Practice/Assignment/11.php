@@ -1,24 +1,29 @@
 <?php
 
-$str = "I am a string";
-
-$length = strlen($str);
-
-// echo $length;
-
-
-for ($index = 0 ; $index < $length ; $index++){
-    // echo $str[$index];
-
-    if($index%2==0){
-            echo ucfirst($str[$index]);
-
+function alternatingCaps($str) {
+    $result = '';
+    $chars = str_split($str); 
+    $index = 0;
+  
+    foreach ($chars as $char) {
+      if (ctype_alpha($char)) { 
+        if ($index % 2 == 0) {
+          $result .= strtoupper($char);
+        } else {
+          $result .= strtolower($char);
         }
-        
-    else{
-        echo $str[$index];
+        $index++; 
+      } else {
+        $result .= $char; 
+      }
     }
-}
+  
+    return $result;
+  }
+  
+ 
+  echo alternatingCaps("I am a string"); 
+  
 
 
 
