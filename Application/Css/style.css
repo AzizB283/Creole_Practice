@@ -1,0 +1,23 @@
+#numerr {
+    color: red;
+    font-size: 18px;
+    margin: 20px;
+    font-weight: bold;
+}
+
+a{
+    text-decoration : none;
+    color : white;
+}
+
+a:hover{
+    color : white;
+}
+
+form{
+    margin-top : 100px;
+}
+
+.error{
+    color : red;
+}

@@ -11,7 +11,7 @@ function checkstr($str, $substr){
     // }
 
 
-    if(preg_match("/{$substr}/",$str)){
+    if(preg_match("/{$substr}/i",$str)){
         echo "true";
     }
     else{

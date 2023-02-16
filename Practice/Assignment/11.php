@@ -1,6 +1,6 @@
 <?php
 
-function alternatingCaps($str) {
+function check($str) {
     $result = '';
     $chars = str_split($str); 
     $index = 0;
@@ -22,7 +22,7 @@ function alternatingCaps($str) {
   }
   
  
-  echo alternatingCaps("I am a string"); 
+  echo check("I am a string"); 
   
 
 

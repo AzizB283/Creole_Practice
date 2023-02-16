@@ -131,6 +131,7 @@ function test_input($data)
             <label class="phperr"><?php echo $nameErr;?></label>
             
         </p>
+        
         <p>
             <label for="cemail">E-Mail (required)</label>
             <input id="cemail" type="email" name="email" class="error" value=" " required>
