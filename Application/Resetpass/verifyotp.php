@@ -1,4 +1,6 @@
-<html>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
@@ -13,7 +15,7 @@
     <script>
         $(document).ready(function(){
 
-            $("#resetForm").validate({
+            $("#verifyForm").validate({
             invalidHandler: function (event, validator) {
                 var errors = validator.numberOfInvalids();
                 if (errors) {
@@ -28,35 +30,33 @@
             },
 
             submitHandler: function(form){
-                var data = $("#resetForm").serialize();
-                var email = $("#cemail").val();
-
+                // var data = $("#verifyForm").serialize();
+                var otp = $("#number").val();
 
             $.ajax({
-          type: "POST",
-          url: "forgotprocess.php",
-          data: { email: email},
-          success: function(response) {
+            type: "POST",
+            url: "verifyprocess.php",
+            data: { otp: otp},
+            success: function(response) {
             // Handle the response from the server
             $("#loading").html(response).css({'color':'green'});    
             $("#loading").show();
-            location.href ="verifyotp.php";
-          },
-          error: function(xhr, status, error) {
+            location.href ="resetpass.php";
+            },
+            error: function(xhr, status, error) {
             // Handle the error from the server
             console.log(xhr.responseText);
-          }
-        });
+            }
+            });
 
 
-    }
+            }
 
-    });
+            });
 
 
 });
 
-    
     </script>
 
 
@@ -86,22 +86,22 @@
 <br>
 <center><h1>Reset Password</h1></center>
 
-    <form action="" class = "container border border-secondary border-3 rounded-3 w-50 text-center d-flex flex-column justify-content-center cmxform" method="post" id="resetForm">
+    <form action="" class = "container border border-secondary border-3 rounded-3 w-50 text-center d-flex flex-column justify-content-center cmxform" method="post" id="verifyForm">
 
     <div id="numerr"></div>
 
 
         <div class="mb-3">
-            <label for="cemail" class="col-sm-2 col-form-label">Email</label>
+            <label for="cemail" class="col-sm-2 col-form-label">Verify OTP</label>
             <div class="col-sm-10 mx-auto">
-                <input type="email" class="form-control error" id="cemail" name="email" required>
+                <input type="number" class="form-control error" id="number" name="otp" required>
             </div>
         </div>
 
      
 
         <div class="mb-3">
-        <button class="submit btn btn-primary" id="submit">Send OTP</button>
+        <button class="submit btn btn-primary" id="submit">Verify OTP</button>
         </div><br>
 
 
@@ -111,7 +111,9 @@
         
     </form>
 
- 
+    <script>
+       
+   </script>
 </body>
 </html>
 

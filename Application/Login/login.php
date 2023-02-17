@@ -12,15 +12,64 @@
 
     <link rel="stylesheet" href="../Css/style.css">
 
+    <script>
+        $(document).ready(function(){
 
-<script>
+            $("#loginform").validate({
+                invalidHandler: function (event, validator) {
+                var errors = validator.numberOfInvalids();
+                if (errors) {
+                    var message = errors == 1
+                        ? 'You missed 1 field.'
+                        : 'You missed ' + errors + ' fields.';
+                    $("div#numerr").html(message);
+                    $("div#numerr").show();
+                } else {
+                    $("div#numerr").hide();
+                }
+            },
+
+            submitHandler:function(form){
+                var data = $('#loginform').serialize();
+
+                $.ajax({
+                    type : "post",
+                    url : "logindb.php",
+                    data : data,
+                }).done(function(res){
+                    res = JSON.parse(res);
+                    if(res['status']){
+                        location.href = "../User_details/welcome.php";
+                    }
+                    else{
+                        var errorMessage = '';
+
+                        $("#loading").html((res.msg));
+                        $.each(res['msg'], function(index, message) {
+                            errorMessage += '<div>' + message + '</div>';
+                        });
+
+                        $("#error-msg").html(errorMessage);
+                        $("#error-msg").show(); 
+
+
+                    }
+                }).fail(function() {
+                    alert("error");
+                })
+
+            }
+
+            })
+
+        })
+
+    </script>
     
-</script>
-
-
+    
 </head>
 <body>
-    
+
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
@@ -44,11 +93,11 @@
 <br>
 <center><h1>Login</h1></center>
 
-    <form action="logindb.php" class = "container border border-secondary border-3 rounded-3 w-50 text-center d-flex flex-column justify-content-center cmxform" method="post" id="commentForm">
+    <form action="logindb.php" id="loginform" class = "container border border-secondary border-3 rounded-3 w-50 text-center d-flex flex-column justify-content-center cmxform" method="post">
 
     <div id="numerr"></div>
 
-        
+
         <div class="mb-3">
             <label for="cemail" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10 mx-auto">
@@ -63,41 +112,30 @@
 
             </div>
 
-            
+
         </div>
 
         <div class="mb-3">
-        <button class="submit btn btn-primary login" id="submit">Log In</button>
-  </div><br>
+            <button class="submit btn btn-primary login" id="submit">Log In</button>
+        </div><br>
+
+        <div class="mb-3">
+            <p id="loading" style ="color:red; font-weight : bold"></p>
+        </div>
+
+
 
   <div class="mb-3">
     <p>Don't have account ? Sign up here.</p>
-        <button class="submit btn btn-primary signup" id="submit"><a href="../Signup/signup.php">Sign Up</a></button>
+        <button class="submit btn btn-primary signup" id=""><a href="../Signup/signup.php">Sign Up</a></button>
   </div>
   <br>
    <div class="mb-3">
-    <p>Don't remember password ? <a href="../Resetpass/forgotpass.php" style= "color : blue;">Click Here</a></p>
+    <p>Don't remember password ? <a href="../Resetpass/forgotpass.php" style= "color : blue;" id="forgot">Click Here</a></p>
   </div>
-        
+
     </form>
 
-    <script>
-        $("#commentForm").validate({
-            invalidHandler: function (event, validator) {
-                var errors = validator.numberOfInvalids();
-                if (errors) {
-                    var message = errors == 1
-                        ? 'You missed 1 field.'
-                        : 'You missed ' + errors + ' fields.';
-                    $("div#numerr").html(message);
-                    $("div#numerr").show();
-                } else {
-                    $("div#numerr").hide();
-                }
-            },
-
-
-        });
-   </script>
+ 
 </body>
 </html>

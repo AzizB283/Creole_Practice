@@ -17,15 +17,26 @@ $res = mysqli_query($conn, $sql);
 
 $row = mysqli_num_rows($res);
 
+// if(email == $email){
+//     $resp['msg'] = "Email already exist";
+//     $resp['status'] = false;
+//     echo json_encode($resp);
+//     exit;
+// }
+
 if($row==1){
-            header("location: ../User_details/welcome.php");
+
+   $resp['status'] = true;
+    echo json_encode($resp);
+    exit;
             
         }
         else{
-            
-           echo "Invalid username or password";
+         $resp['msg'] = "Invalid email or password";
+         $resp['status'] = false;
+         echo json_encode($resp);
+         exit;
         }
-
     
 
 

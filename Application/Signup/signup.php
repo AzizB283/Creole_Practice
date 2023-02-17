@@ -13,6 +13,91 @@
     <link rel="stylesheet" href="../Css/style.css">
 
 
+    <script>
+        $(document).ready(function(){
+
+
+        $("#signupform").validate({
+                invalidHandler: function (event, validator) {
+                    var errors = validator.numberOfInvalids();
+                    if (errors) {
+                        var message = errors == 1
+                        ? 'You missed 1 field.'
+                        : 'You missed ' + errors + ' fields.';
+                        $("div#numerr").html(message);
+                        $("div#numerr").show();
+                    } else {
+                        $("div#numerr").hide();
+                }
+            },
+            
+            
+            rules: {
+                name: {
+                    required: true,
+                    minlength: 3
+                },
+                email: "required",
+                password: "required",
+                
+                
+            },
+            messages: {
+                name: {
+                    required: "Please enter name that is atleast 3 character long",
+                    
+                },
+                
+                email: {
+                    required: "Please enter valid email address",
+                },
+                    
+                    password: {
+                        required: "Please create password",
+                        minlength: jQuery.validator.format("Password must be 6 characters long")
+                        
+                    },
+
+                    },
+
+
+                    submitHandler: function(form){
+                        var data = $("#signupform").serialize();
+                        $.ajax({
+                        type : "post",
+                        url : "signupdb.php",
+                        data : data,
+                    }).done(function(res){
+                        res = JSON.parse(res);
+                        if(res['status']){
+                            $("#loading").html("Account created successfully. <br> Click to Log in button");
+                    }
+                    else{
+                        var errorMessage = '';
+                        
+                        $("#loading").html((res.msg));
+                        $.each(res['msg'], function(index, message) {
+                            errorMessage += '<div>' + message + '</div>';
+                        });
+                        
+                        $("#error-msg").html(errorMessage);
+                        $("#error-msg").show(); 
+                        
+                        
+                    }
+                }).fail(function() {
+                    alert("error");
+                })
+
+                    }
+                    
+                })
+            })
+                
+       
+        </script>
+        
+
 </head>
 <body>
     
@@ -39,7 +124,7 @@
 <br>
 <center><h1>Sign Up</h1></center>
 
-    <form action="signupdb.php" class = "container border border-secondary border-3 rounded-3 w-50 text-center d-flex flex-column justify-content-center cmxform" method="post" id="commentForm">
+    <form action="" id="signupform" class = "container border border-secondary border-3 rounded-3 w-50 text-center d-flex flex-column justify-content-center cmxform" method="post">
 
     <div id="numerr"></div>
 
@@ -68,82 +153,22 @@
             
         </div>
 
-        <!-- <div class="mb-3">
-            <label for="formFile" class="form-label">Upload Avatar</label>
-            <div class="col-sm-10 mx-auto">
-            <input class="form-control error" type="file" id="formFile" name="image" required>
-            </div>
-        </div> -->
 
         <div class="mb-3">
             <button class="submit btn btn-primary" id="submit">Sign Up</button>
         </div>
 
         <div class="mb-3">
+            <p id="loading" style ="font-weight : bold"></p>
+        </div>
+
+        <div class="mb-3">
             <p>Already have an account ? Sign in here.</p>
-            <button class="submit btn btn-primary" id="submit"><a href="../Login/login.php">Log In</a></button>
+            <button class="submit btn btn-primary" ><a href="../Login/login.php">Log In</a></button>
         </div>
         
     </form>
 
-    <script>
-        $("#commentForm").validate({
-            invalidHandler: function (event, validator) {
-                var errors = validator.numberOfInvalids();
-                if (errors) {
-                    var message = errors == 1
-                        ? 'You missed 1 field.'
-                        : 'You missed ' + errors + ' fields.';
-                    $("div#numerr").html(message);
-                    $("div#numerr").show();
-                } else {
-                    $("div#numerr").hide();
-                }
-            },
-
-
-            rules: {
-                name: {
-                    required: true,
-                    minlength: 3
-                },
-                email: "required",
-                password: "required",
-
-
-            },
-            messages: {
-                name: {
-                    required: "Please enter name that is atleast 3 character long",
-
-                },
-
-                email: {
-                    required: "Please enter valid email address",
-                },
-
-                // number: {
-                //     required: "Enter your number",
-                //     number: "Please, enter 10 digit only",
-                //     minlength: jQuery.validator.format("Please, Enter 10 digits only")
-                // },
-
-                // comment: {
-                //     required: "Please enter some comment",
-                // },
-
-                password: {
-                    required: "Please create password",
-                    minlength: jQuery.validator.format("Password must be 6 characters long")
-                    
-                },
-
-                // agree: {
-                //     required: "Please agree to our policy to move forward",
-                // },
-            },
-
-        });
-   </script>
-</body>
-</html>
+                </body>
+                </html>
+                

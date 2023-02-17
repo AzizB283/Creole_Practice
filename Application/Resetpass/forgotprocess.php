@@ -12,6 +12,8 @@ require '../Database/db.php';
 
 $email = $_POST['email'];
 
+$_SESSION['email']=$email;
+
 $sql = "SELECT * FROM login where email = '$email'";
 
 $res = mysqli_query($conn, $sql);
@@ -37,44 +39,64 @@ $row = mysqli_num_rows($res);
 if($_SERVER['REQUEST_METHOD']=='POST'){
 
     if($row==1){
-
-     try{
-
+        
+        try{
+            
+            $otp = rand(100000, 999999);
             $mail = new PHPMailer(true);
             
             $mail->isSMTP();    
             $mail->Mailer = "smtp";
             
-            $mail->SMTPDebug  = 3;  
+            // $mail->SMTPDebug  = 3;  
             $mail->SMTPAuth   = TRUE;
             // $mail->SMTPSecure = "tls";
             $mail->Port       = 587;
             $mail->Host       = "smtp.gmail.com";
             $mail->Username   = "thorthegodofthunder147@gmail.com";
             $mail->Password   = "dqisqyaqrodqkhym";
-            $mail->SMTPOptions = array(
-                'ssl' => array(
-                'verify_peer' => false,
-                'verify_peer_name' => false,
-                'allow_self_signed' => true
-                )
-                );
+            // $mail->SMTPOptions = array(
+            //     'ssl' => array(
+            //     'verify_peer' => false,
+            //     'verify_peer_name' => false,
+            //     'allow_self_signed' => true
+            //     )
+            //     );
             
             
-            $otp = rand(100000, 999999);
-            $mail->IsHTML(true);
+            // $mail->IsHTML(true);
             $mail->AddAddress($email);
-            // $mail->SetFrom("thorthegodofthunder147@gmail.com");
-            // $mail->AddReplyTo("reply-to-email@domain", "reply-to-name");
-            // $mail->AddCC("cc-recipient-email@domain", "cc-recipient-name");
             $mail->Subject = "Verify Account OTP";
-            echo $otp;
+            // echo $otp;
             $mail->Body = $otp; 
+
             if(!$mail->Send()) {
-                echo "Error while sending Email.";
-                var_dump($mail);
+
+                $resp['msg'] = "Failed to send email try again";
+                $resp['status'] = false;
+                echo json_encode($resp);
+                exit;
+                // var_dump($mail);
+
+
+                
             } else {
+                // $resp['msg'] = "Email sent sucessfully";                // displays message when email is sent
+                // $resp['status'] = true;
+                // echo json_encode($resp);
+
                 echo "Email sent successfully";
+                
+
+                $sql1 = "INSERT INTO otp (email, otp) VALUES ('$email', '$otp')";
+
+                $res1 = mysqli_query($conn, $sql1);
+
+                // header("Location:verifyotp.php");
+                
+
+                // echo "Sent successfully";
+                
             }
         }
         catch (phpmailerException $e) {
@@ -85,10 +107,13 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         
     }
     else{
-        
-        echo "Invalid email";
+        $resp['msg'] = "email not found";
+        $resp['status'] = false;
+        echo json_encode($resp);
     }
-}
+    }
+
+
 
 
 
