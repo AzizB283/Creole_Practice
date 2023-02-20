@@ -18,6 +18,11 @@ form{
     margin-top : 100px;
 }
 
-.error{
+label.error{
     color : red;
 }
+
+
+
+
+

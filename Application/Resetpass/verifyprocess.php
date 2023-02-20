@@ -1,38 +1,29 @@
 <?php
 
 require '../Database/db.php';
+session_start();
 
-// $name = $_POST['name'];
-// $email = $_POST['email'];
-// $password = md5($_POST['password']);
+$userotp = $_POST['otp'];
+$genotp = $_SESSION['otp'];
 
-$otp = $_POST['otp'];
+if(!empty($_POST['otp'])){
 
-$sql1 = "SELECT otp FROM otp where otp = '$otp'";
+    if($userotp == $genotp){
+
+        $success = 1;
+        echo $success;
+        $sql2 = "DELETE FROM otp WHERE otp = '$userotp'";
+        $res2 = mysqli_query($conn,$sql2);
+    }
+
+    else{
+        // $resp['msg'] = "OTP not matched";
+        // $resp['status'] = false;
+        // echo json_encode($resp);
+    }
 
 
-$res= mysqli_query($conn,$sql1);
-$count = mysqli_num_rows($res);
-
-
-
-if($count === 1){
- 
-    // $resp['status'] = true;
-    //     echo json_encode($resp);
-    //     exit;
-
-    echo "OTP Verified Successfully";
-    
 }
-
-else{
-    $resp['msg'] = "OTP not matched";
-    $resp['status'] = false;
-    echo json_encode($resp);
-}
-
-
 
 
 ?>
