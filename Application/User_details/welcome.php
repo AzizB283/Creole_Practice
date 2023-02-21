@@ -1,9 +1,11 @@
 <?php
-session_start();
+//    include('../Login/session.php');
+include ('../Database/db.php');
 
-// echo $email;
-
-$email = $_SESSION['email'];
+$sql = "SELECT * FROM user_details";
+$res = mysqli_query($conn, $sql);
+//    session_start();
+//    $name=$_SESSION['name'];
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +20,17 @@ $email = $_SESSION['email'];
         <script src="../jQuery/jquery.min.js"></script>
         <script src="../jQuery/jquery.validate.min.js"></script>
         <link rel="stylesheet" href="../Css/style.css">
+        <script>
+            window.history.forward();
+        </script>
+        <style>
+            .img{
+                height : 80px;
+                width : 80px;
+                border : 2px solid black;
+                border-radius : 50%;
+            }
+        </style>
     </head>
     <body>
         
@@ -42,7 +55,71 @@ $email = $_SESSION['email'];
             </nav>
         </header>
         <br>
-        
+            
+        <table class="table table-primary container table-bordered border-primary align-middle">
+            <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Number</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Image</th>
+                        
+                        <th scope="col" colspan="2"><center>Action</center></th>
+                    </tr>
+            </thead>
+            <tbody>
+
+            <?php
+
+            if(mysqli_num_rows($res)>0){
+                while($row = mysqli_fetch_assoc($res)){
+                    $img = '<img class="img" src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'"/>';
+                    echo 
+                    "<tr>
+                        <th scope='row'>".$row['id']."</th>
+                        <td>".$row['name']."</td>
+                        <td>".$row['email']."</td>
+                        <td>".$row['number']."</td>
+                        <td>".$row['gender']."</td>
+                        <td>".$row['address']."</td>
+                        <td>".$img."</td>
+                        <td><button class='btn btn-primary'>Edit</button></td>
+                        <td><button class='btn btn-primary'>Delete</button></td>
+                      
+
+                    </tr>";
+                }
+            }
+            ?>
+                    <!-- <tr>
+                        <th scope="row">1</th>
+                        <td>Aziz</td>
+                        <td>aziz@gmail.com</td>
+                        <td>8160739392</td>
+                        <td>Male</td>
+                        <td>Morbi</td>
+                        <td>Avatar</td>
+                        <td><button class="btn btn-primary">Edit</button></td>
+                        <td><button class="btn btn-primary">Delete</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Sid</td>
+                        <td>Sid@gmail.com</td>
+                        <td>8160739392</td>
+                        <td>Male</td>
+                        <td>Morbi</td>
+                        <td>Avatar</td>
+                        <td><button class="btn btn-primary">Edit</button></td>
+                        <td><button class="btn btn-primary">Delete</button></td>
+                    </tr> -->
+            </tbody>
+        </table>
+
+    
     </body>
 </html>
 

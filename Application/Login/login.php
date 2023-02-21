@@ -14,6 +14,9 @@
         <script src="../jQuery/jquery.validate.min.js"></script>
         <script src="../jQuery/login.js"></script>
         <link rel="stylesheet" href="../Css/style.css">
+        <script>
+            window.history.forward();
+        </script>
     </head>
     <body>
 
