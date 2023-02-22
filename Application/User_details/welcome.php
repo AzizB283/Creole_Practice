@@ -19,10 +19,9 @@ $res = mysqli_query($conn, $sql);
 
         <script src="../jQuery/jquery.min.js"></script>
         <script src="../jQuery/jquery.validate.min.js"></script>
+        <!-- <script src="../jQuery/delete.php"></script>  -->
         <link rel="stylesheet" href="../Css/style.css">
-        <script>
-            window.history.forward();
-        </script>
+        
         <style>
             .img{
                 height : 80px;
@@ -45,6 +44,11 @@ $res = mysqli_query($conn, $sql);
                         <div class="navbar-nav">
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </div>
+                    </div>
+
+                    <div class="d-flex">
+                        <!-- <button class="btn btn-outline-primary me-2" type="button"><a href="../Signup/signup.php">Sign Up</a></button> -->
+                        <button class="btn btn-outline-primary me-2" type="button"><a href="create.php">Add New Data</a></button>
                     </div>
 
                     <div class="d-flex">
@@ -76,7 +80,6 @@ $res = mysqli_query($conn, $sql);
 
             if(mysqli_num_rows($res)>0){
                 while($row = mysqli_fetch_assoc($res)){
-                    $img = '<img class="img" src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'"/>';
                     echo 
                     "<tr>
                         <th scope='row'>".$row['id']."</th>
@@ -84,38 +87,18 @@ $res = mysqli_query($conn, $sql);
                         <td>".$row['email']."</td>
                         <td>".$row['number']."</td>
                         <td>".$row['gender']."</td>
-                        <td>".$row['address']."</td>
-                        <td>".$img."</td>
-                        <td><button class='btn btn-primary'>Edit</button></td>
-                        <td><button class='btn btn-primary'>Delete</button></td>
+                        <td>".$row['address']."</td>" ?>
+                        <td><img class="img" src="../images/<?php echo $row['image']; ?>"></td>
+
+                       <?php 
+                      echo "<td><button class='btn btn-primary'>Edit</button></td>
+                        <td><button class='btn btn-primary'><a href = 'delete.php?id=$row[id]'>Delete</a></button></td>
                       
 
                     </tr>";
                 }
             }
             ?>
-                    <!-- <tr>
-                        <th scope="row">1</th>
-                        <td>Aziz</td>
-                        <td>aziz@gmail.com</td>
-                        <td>8160739392</td>
-                        <td>Male</td>
-                        <td>Morbi</td>
-                        <td>Avatar</td>
-                        <td><button class="btn btn-primary">Edit</button></td>
-                        <td><button class="btn btn-primary">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Sid</td>
-                        <td>Sid@gmail.com</td>
-                        <td>8160739392</td>
-                        <td>Male</td>
-                        <td>Morbi</td>
-                        <td>Avatar</td>
-                        <td><button class="btn btn-primary">Edit</button></td>
-                        <td><button class="btn btn-primary">Delete</button></td>
-                    </tr> -->
             </tbody>
         </table>
 
