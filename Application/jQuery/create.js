@@ -67,7 +67,8 @@ $(document).ready(function(){
             }).done(function (res) {
                 res = JSON.parse(res);
                 if (res['status']) {
-                    $("#loading").html("Data addedd successfully");
+                    location.href = "../User_details/welcome.php";
+                    $("#loading").html("Data added successfully");
                 }
                 else {
                     var errorMessage = '';
@@ -88,3 +89,5 @@ $(document).ready(function(){
         }
     });
 });
+
+console.log("Hello");
