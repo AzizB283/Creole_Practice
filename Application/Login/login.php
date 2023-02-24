@@ -1,3 +1,45 @@
+<?php
+
+$email = $password = "";
+$emailErr = $passwordErr = "";
+
+if($_SERVER["REQUEST_METHOD"]=='POST'){
+
+
+    if(empty($_POST['email'])){
+        $emailErr = "Please enter valid email<br>";
+    }
+    else{
+        
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $emailErr = "Invalid email format<br>";
+            $email = "";
+          }
+          else{
+            $email = test_input($_POST['email']);
+          }
+    }
+
+    if(empty($_POST['password'])){
+        $passwordErr = "Please enter password<br>";
+    }
+    else{
+        $password = test_input($_POST['password']);
+    }
+
+}
+
+function test_input($data)
+{
+$data = trim($data);
+$data = stripslashes($data);
+$data = htmlspecialchars($data);
+return $data;
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -43,23 +85,24 @@
         <br>
         <center><h1>Login</h1></center>
 
-        <form action="logindb.php" id="loginform" class = "container border border-secondary border-3 rounded-3 w-50 text-center d-flex flex-column justify-content-center cmxform" method="post">
+        <form action="" id="loginform" class = "container border border-secondary border-3 rounded-3 w-50 text-center d-flex flex-column justify-content-center cmxform" method="post">
 
             <div id="numerr"></div>
 
             <div class="mb-3">
                 <label for="cemail" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10 mx-auto">
-                    <input type="email" class="form-control error" id="cemail" name="email" value="<?php if (isset($_COOKIE["email"])) {echo $_COOKIE["email"];}?>" required>
+                    <input type="email" class="form-control error" id="cemail" name="email" value="<?php if (isset($_COOKIE["email"])) {echo $_COOKIE["email"];}?>">
                 </div>
+                <label class="phperr"><?php echo $emailErr;?></label>
             </div>
 
             <div class="mb-3">
                 <label for="cpassword" class="col-sm-2 col-form-label">Password</label>
 
                 <div class="col-sm-10 mx-auto">
-                <input id="cpassword" name="password" type="password" class="form-control error" minlength="6" maxlength="10" value="<?php if (isset($_COOKIE["password"])) {echo $_COOKIE["password"];}?>" required>
-
+                <input id="cpassword" name="password" type="password" class="form-control error" minlength="6" maxlength="10" value="<?php if (isset($_COOKIE["password"])) {echo $_COOKIE["password"];}?>">
+                <label class="phperr"><?php echo $passwordErr;?></label>
                 </div>
             </div>
 

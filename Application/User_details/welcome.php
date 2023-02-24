@@ -1,13 +1,22 @@
 <?php
-//    include('../Login/session.php');
-include ('../Database/db.php');
+    include('../Login/logindb.php');
+    include ('../Database/db.php');
 
-session_start();
 
-$sql = "SELECT * FROM user_details";
-$res = mysqli_query($conn, $sql);
-//    session_start();
-//    $name=$_SESSION['name'];
+    $sql = "SELECT * FROM user_details";
+    $res = mysqli_query($conn, $sql);
+
+    $session_email = $_SESSION['email'];
+
+    $sql1 = "SELECT * FROM login WHERE email = '$session_email'";
+    $res1 = mysqli_query($conn, $sql1);
+
+
+    $sql2 = "SELECT login.email,login.role FROM login JOIN user_details ON login.email = user_details.email";
+    $res2 = mysqli_query($conn, $sql2);
+
+   
+
 ?>
 
 <!DOCTYPE html>
@@ -57,15 +66,15 @@ $res = mysqli_query($conn, $sql);
                 });
             });
             });
-
-            window.history.forward();
+            // window.history.forward();
             </script>
+            
     </head>
     <body>
         
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div class="container-fluid">
+                < class="container-fluid">
                     <a class="navbar-brand" href="#">TechCupid</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -82,20 +91,19 @@ $res = mysqli_query($conn, $sql);
 
                     </div>
                     <div class="d-flex">
-                        <!-- <button class="btn btn-outline-primary me-2" type="button"><a href="../Signup/signup.php">Sign Up</a></button> -->
-                        <div class="dropdown">
+                    <div class="dropdown">
                             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 Profile
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="#">Update Profile</a></li>
+                                <li><a class="dropdown-item" href="updateprofile.php">Update Profile</a></li>
                                 <li><a class="dropdown-item" href="../Login/logout.php">Log out</a></li>
                             </ul>&nbsp;&nbsp;
                         </div>
                     </div>
                     
                     <div class="d-flex">
-                        <button class="btn btn-outline-primary me-2" type="button"><a href="create.php">Add New Data</a></button>
+                        <button class="btn btn-outline-primary me-2 btnhide" type="button"><a href="create.php">Add New Profile</a></button>
                       
                     </div>
                 </div>
@@ -103,18 +111,32 @@ $res = mysqli_query($conn, $sql);
         </header>
 
         
-            <form action="" method="post">
-                <div class="mb-3">
-                    
-                    <!-- <input class="btn btn-primary" type="submit" value="Search"> -->
-                </div>
-            </form>
         <p id="msg">
             <?php
             if(isset($_SESSION['status'])){
                 echo $_SESSION['status'];
                 unset($_SESSION['status']);
             }
+
+            if($row1 = mysqli_fetch_assoc($res1)){
+                if($row1['role'] == "user"){
+                    echo "<script>
+                    $(document).ready(function(){
+                        $('.btnhide').remove();
+                    })
+                    </script>";
+                }
+            }
+
+            if(mysqli_num_rows($res2)>0){
+                while($row2 = mysqli_fetch_assoc($res2)){
+                    if($row2['role']=="admin"){
+                        // echo $row2['email'];
+                       
+                    }
+                }
+            }
+
             ?>
         </p>
             
@@ -129,7 +151,7 @@ $res = mysqli_query($conn, $sql);
                         <th scope="col">Address</th>
                         <th scope="col">Image</th>
                         
-                        <th scope="col" colspan="2"><center>Action</center></th>
+                        <th scope="col" colspan="2" class = "btnhide"><center>Action</center></th>
                     </tr>
             </thead>
             <tbody id="myTable">
@@ -146,11 +168,11 @@ $res = mysqli_query($conn, $sql);
                         <td>".$row['number']."</td>
                         <td>".$row['gender']."</td>
                         <td>".$row['address']."</td>" ?>
-                        <td><img class="img" src="../images/<?php echo $row['image']; ?>"></td>
+                        <td><img class="img" src="../images/<?php echo$row['id']. '/'. $row['image']; ?>"></td>
 
                        <?php 
-                      echo "<td><button class='btn btn-primary'><a href='update.php?id=$row[id]'>Edit</a></button></td>
-                        <td><button class='btn btn-primary'><a href = 'delete.php?id=$row[id]'>Delete</a></button></td>
+                      echo "<td class='btnhide'><button class='btn btn-primary'><a href='update.php?id=$row[id]'>Edit</a></button></td>
+                        <td class='btnhide'><button class='btn btn-danger'><a href = 'delete.php?id=$row[id]'>Delete</a></button></td>
                       
 
                     </tr>";

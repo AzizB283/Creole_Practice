@@ -93,6 +93,7 @@ return $data;
 
         <script src="../jQuery/jquery.min.js"></script>
         <script src="../jQuery/jquery.validate.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
         <script src="../jQuery/create.js"></script>
 
         <link rel="stylesheet" href="../Css/style.css"> 
@@ -182,7 +183,7 @@ return $data;
             <div class="mb-3">
                 <label for="formFile" class="form-label">Add Image</label>
                 <div class="col-sm-10 mx-auto">
-                    <input class="form-control" type="file" id="image" value="<?php echo $image; ?>" name="image">
+                    <input class="form-control error" type="file" id="image" value="<?php echo $image; ?>" name="image">
 
                 </div>
                 <label class="phperr"><?php echo $imageErr;?></label>

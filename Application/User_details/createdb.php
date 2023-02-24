@@ -11,14 +11,26 @@ if(!empty($_POST['name']) && ($_POST['email']) &&  ($_POST['number']) &&  ($_POS
     $number = $_POST['number'];
     $gender = $_POST['gender'];
     $address = $_POST['address'];
+    $base_dir = "../images/";
+    
+    
     $filename = $_FILES['image']['name'];
     $tempname = $_FILES['image']['tmp_name'];
-    $folder = "../images/" . $filename;
 
     $sql = "INSERT INTO user_details (name, email, number, gender, address, image) VALUES ('$name','$email', '$number', '$gender', '$address', '$filename')";
 
     if(mysqli_query($conn, $sql)){
-        if(move_uploaded_file($tempname, $folder)){
+        $sql2 = "SELECT id FROM user_details WHERE email = '$email'";
+        $res2 = mysqli_query($conn, $sql2);
+        $row2 = mysqli_fetch_assoc($res2);
+        $id = $row2['id'];
+
+        $new_dir = $id;
+
+        mkdir($base_dir . $new_dir);
+        $target_file = $base_dir . $new_dir . '/'. $filename ;
+
+        if(move_uploaded_file($tempname, $target_file)){
             $resp['status'] = true;
          echo json_encode($resp);
         }

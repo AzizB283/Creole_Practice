@@ -1,3 +1,58 @@
+<?php
+
+$name = $email = $password = "";
+$nameErr = $emailErr = $passwordErr = "";
+
+if($_SERVER["REQUEST_METHOD"]=='POST'){
+
+    if(empty($_POST['name'])){
+        $nameErr = "Please enter your name<br>";
+    }
+    else{
+       
+        if(!preg_match("/^[a-zA-Z ]+$/",$name = $_POST['name'])){
+            $nameErr = "Only characters are allowed in name<br>"; 
+            $name = "";     
+        }
+        else{
+            $name = test_input($_POST['name']);
+        }
+    }
+
+
+    if(empty($_POST['email'])){
+        $emailErr = "Please enter valid email<br>";
+    }
+    else{
+        
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $emailErr = "Invalid email format<br>";
+            $email = "";
+          }
+          else{
+            $email = test_input($_POST['email']);
+          }
+    }
+
+    if(empty($_POST['password'])){
+        $passwordErr = "Please enter password<br>";
+    }
+    else{
+        $password = test_input($_POST['password']);
+    }
+
+}
+
+function test_input($data)
+{
+$data = trim($data);
+$data = stripslashes($data);
+$data = htmlspecialchars($data);
+return $data;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -47,14 +102,16 @@
             <div class="mb-3">
                 <label for="cname" class="col-sm-2 col-form-label">Name</label>
                 <div class="col-sm-10 mx-auto">
-                    <input type="text" class="form-control error" id="cname" name="name" required>
+                    <input type="text" class="form-control error" id="cname" name="name">
+                    <label class="phperr"><?php echo $nameErr;?></label>
                 </div>
             </div>
                 
             <div class="mb-3">
                 <label for="cemail" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10 mx-auto">
-                <input type="email" class="form-control error" id="cemail" name="email" required>
+                <input type="email" class="form-control error" id="cemail" name="email">
+                <label class="phperr"><?php echo $emailErr;?></label>
                 </div>
             </div>
             
@@ -62,7 +119,8 @@
                 <label for="cpassword" class="col-sm-2 col-form-label">Password</label>
 
                 <div class="col-sm-10 mx-auto">
-                <input id="cpassword" name="password" type="password" class="form-control error" minlength="6" maxlength="10" required>
+                <input id="cpassword" name="password" type="password" class="form-control error" minlength="6" maxlength="10">
+                <label class="phperr"><?php echo $passwordErr;?></label>
 
                 </div>
                     

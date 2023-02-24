@@ -1,4 +1,9 @@
 $(document).ready(function(){
+
+    $.validator.addMethod("filesize", function(value, element, param) {
+        return this.optional(element) || (element.files[0].size <= param);
+    }, "File size must be less than {0} bytes.");
+
     $("#updateform").validate({
         invalidHandler: function (event, validator) {
             var errors = validator.numberOfInvalids();
@@ -25,7 +30,11 @@ $(document).ready(function(){
                 required:true
             },
             address:"required",
-            image:"required",
+            image:{
+                required: true,
+                extension: "png|jpe?g",
+                filesize: 1048576, 
+            },
 
         },
         messages: {
@@ -52,6 +61,8 @@ $(document).ready(function(){
 
             image: {
                 required: "Please upload your image",
+                extension: "Please only upload jpg or png",
+                filesize: "Filesize must be less than 1 Mb",
             },
         },
 
