@@ -5,8 +5,8 @@ session_start();
 require '../Database/db.php';
 
 if(!empty($_POST['remember'])){
-    setcookie ("email",$_POST["email"],time()+ 36000);
-	setcookie ("password",$_POST["password"],time()+ 36000);
+    setcookie ("email",$_POST["email"],time()+ 86400);
+	setcookie ("password",$_POST["password"],time()+ 86400);
 
 }
 

@@ -14,7 +14,8 @@ if($row = mysqli_fetch_assoc($res)){
     $number = $row['number'];
     $gender = $row['gender'];
     $address = $row['address'];
-    // $image = $row['image'];
+    $id = $row['id'];
+    $image = $row['image'];
 }
 
 ?>
@@ -90,7 +91,7 @@ if($row = mysqli_fetch_assoc($res)){
                     
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="welcome.php">Home</a>
                         </div>
                     </div>
                     
@@ -107,6 +108,8 @@ if($row = mysqli_fetch_assoc($res)){
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li><a class="dropdown-item" href="welcome.php">Dashboard</a></li>
                                 <li><a class="dropdown-item" href="updateprofile.php">Update Profile</a></li>
+                                <li><a class="dropdown-item" href="importdata.php">Import Excel Data</a></li>
+                                <li><a class="dropdown-item" href="exportpdf.php">Export PDF</a></li>
                                 <li><a class="dropdown-item" href="../Login/logout.php">Log out</a></li>
                             </ul>&nbsp;&nbsp;
                         </div>
@@ -121,7 +124,8 @@ if($row = mysqli_fetch_assoc($res)){
         </header>
         
         <section class="vh-100" style="background-color: ;">
-            <form enctype="multipart/form-data" action="" method="post" id="updateprofile">
+            <form enctype="multipart/form-data" action="" method="post" id="updateimage">
+                <input type="hidden" name="id" value = "<?php echo $row['id']; ?>">
                 <div class="container h-100">
                     <div class="row d-flex justify-content-center align-items-center h-100">
                         <div class="col col-lg-6 mb-4 mb-lg-0">
@@ -134,9 +138,12 @@ if($row = mysqli_fetch_assoc($res)){
                                     <h3><?php echo $name; ?></h3>
                                     <i class="far fa-edit mb-5"></i><br><br>
                                     <div class="col-sm-10 mx-auto">
-                                        <input class="form-control error" type="file" id="image" name="image">
+                                        <input class="form-control error" type="file" id="image" name="image" value = "<?php echo $row['image'] ?>">
                                     </div>
+                                    
                                 </div>
+                                
+        
                         <div class="col-md-8">
                             <div class="card-body p-4">
                                 <h2>Information</h2>
@@ -209,4 +216,5 @@ if($row = mysqli_fetch_assoc($res)){
             </form>
         </section>
     </body>
-    </html>
+</html>
+

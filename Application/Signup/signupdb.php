@@ -3,7 +3,7 @@
 require '../Database/db.php';
 
 
-if(!empty($_POST['name']) && ($_POST['email']) &&  ($_POST['password'])){
+if(!empty($_POST['name']) && !empty($_POST['email']) &&  !empty($_POST['password'])){
 
     $name = $_POST['name'];
     $email = $_POST['email'];

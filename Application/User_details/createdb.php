@@ -4,7 +4,7 @@ require "../Database/db.php";
 
 // echo $_GET['name'];
 
-if(!empty($_POST['name']) && ($_POST['email']) &&  ($_POST['number']) &&  ($_POST['gender']) &&  ($_POST['address'])){
+if(!empty($_POST['name']) && !empty($_POST['email']) &&  !empty($_POST['number']) &&  !empty($_POST['gender']) &&  !empty($_POST['address'])){
 
     $name = $_POST['name'];
     $email = $_POST['email'];

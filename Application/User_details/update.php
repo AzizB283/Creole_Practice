@@ -54,7 +54,7 @@ $address = $row['address'];
                     </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="welcome.php">Home</a>
                     </div>
                 </div>
 

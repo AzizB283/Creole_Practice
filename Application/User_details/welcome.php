@@ -168,7 +168,11 @@
                         <td>".$row['number']."</td>
                         <td>".$row['gender']."</td>
                         <td>".$row['address']."</td>" ?>
-                        <td><img class="img" src="../images/<?php echo$row['id']. '/'. $row['image']; ?>"></td>
+                        <td><img class="img" src="<?php echo $row['image'] ?>"></td>
+
+                         <!-- ../images/ echo$row['id']. '/'. $row['image'];  -->
+                        
+                        
 
                        <?php 
                       echo "<td class='btnhide'><button class='btn btn-primary'><a href='update.php?id=$row[id]'>Edit</a></button></td>
