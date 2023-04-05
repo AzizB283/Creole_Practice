@@ -1,0 +1,5 @@
+<?php
+/*
+Containes Footer part
+*/
+?>
